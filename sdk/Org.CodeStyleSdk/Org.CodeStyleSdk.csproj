@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.CodeStyleSdk
+    MSBuild SDK packaging project (no compilation).
+    
+    Extends Org.BuildSdk with code formatting and style enforcement.
+    Provides .globalconfig with organization-wide formatting rules.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.CodeStyleSdk</PackageId>
+    <Description>MSBuild SDK that enforces code formatting and style rules</Description>
+  </PropertyGroup>
+
+</Project>

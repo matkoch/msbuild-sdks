@@ -1,0 +1,10 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+
+    Imports Org.BuildSdk targets for build pipeline.
+  -->
+
+  <!-- Import Org.BuildSdk targets -->
+  <Import Project="Sdk.targets" Sdk="Org.BuildSdk" />
+</Project>

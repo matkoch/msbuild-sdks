@@ -1,0 +1,8 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+  -->
+
+  <!-- Import Org.CodeStyleSdk targets -->
+  <Import Project="Sdk.targets" Sdk="Org.CodeStyleSdk" />
+</Project>

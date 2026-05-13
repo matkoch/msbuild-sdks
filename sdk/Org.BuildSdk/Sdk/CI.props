@@ -1,0 +1,32 @@
+<Project>
+  <!--
+    CI.props - Auto-detect Continuous Integration environments
+    
+    Sets ContinuousIntegrationBuild=true when running on known CI systems.
+    This enables deterministic builds and other CI-specific behaviors.
+  -->
+
+  <PropertyGroup Condition="'$(ContinuousIntegrationBuild)' == ''">
+    <!-- GitHub Actions -->
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- Azure Pipelines / DevOps Server -->
+    <ContinuousIntegrationBuild Condition="'$(TF_BUILD)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- GitLab CI -->
+    <ContinuousIntegrationBuild Condition="'$(GITLAB_CI)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- AppVeyor -->
+    <ContinuousIntegrationBuild Condition="'$(APPVEYOR)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- Travis CI -->
+    <ContinuousIntegrationBuild Condition="'$(TRAVIS)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- CircleCI -->
+    <ContinuousIntegrationBuild Condition="'$(CIRCLECI)' == 'true'">true</ContinuousIntegrationBuild>
+    <!-- TeamCity -->
+    <ContinuousIntegrationBuild Condition="'$(TEAMCITY_VERSION)' != ''">true</ContinuousIntegrationBuild>
+    <!-- JetBrains Space -->
+    <ContinuousIntegrationBuild Condition="'$(JB_SPACE_API_URL)' != ''">true</ContinuousIntegrationBuild>
+    <!-- Jenkins -->
+    <ContinuousIntegrationBuild Condition="'$(BUILD_ID)' != '' AND '$(BUILD_URL)' != ''">true</ContinuousIntegrationBuild>
+    <!-- Generic CI environment variable (set by many CI systems) -->
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>

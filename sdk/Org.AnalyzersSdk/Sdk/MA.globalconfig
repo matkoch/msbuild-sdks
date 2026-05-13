@@ -1,0 +1,9 @@
+# Meziantou.Analyzer Diagnostic Severities
+# https://github.com/meziantou/Meziantou.Analyzer
+
+is_global = true
+global_level = -2
+
+# MA0003: Add parameter name to improve readability
+# Default severity is 'suggestion' - we escalate to 'warning' to enforce named arguments for literals
+dotnet_diagnostic.MA0003.severity = warning

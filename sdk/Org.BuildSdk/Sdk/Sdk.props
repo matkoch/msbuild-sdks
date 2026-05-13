@@ -1,0 +1,37 @@
+<Project>
+  <!--
+    Sdk.props - Imported before the project content
+
+    Defines organization-wide build defaults.
+    These establish a consistent compilation and analysis baseline.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk if not already imported (supports both ProjectElement and SdkElement styles) -->
+  <PropertyGroup>
+    <_MustImportMicrosoftNETSdk Condition="'$(UsingMicrosoftNETSdk)' != 'true'">true</_MustImportMicrosoftNETSdk>
+  </PropertyGroup>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" Condition="'$(_MustImportMicrosoftNETSdk)' == 'true'" />
+
+  <!-- Always applied: language features and baseline analysis -->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <NullableContextOptions>enable</NullableContextOptions>
+    <WarningLevel>4</WarningLevel>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+
+  <!-- NuGet restore optimizations -->
+  <PropertyGroup>
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+    <AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+  </PropertyGroup>
+
+  <!-- Auto-detect CI environments -->
+  <Import Project="$(MSBuildThisFileDirectory)CI.props" />
+
+</Project>

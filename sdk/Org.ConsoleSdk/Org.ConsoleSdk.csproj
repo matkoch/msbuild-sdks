@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.ConsoleSdk
+    MSBuild SDK for console apps with timing output and rich console via Spectre.Console.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.ConsoleSdk</PackageId>
+    <Description>MSBuild SDK that provides entry point timing and aliases Console to Spectre.Console.AnsiConsole</Description>
+
+    <!-- Generator project output path -->
+    <GeneratorProjectDir>$([MSBuild]::NormalizePath('$(MSBuildProjectDirectory)', '..', '..', 'src', 'Org.Console.Generators'))</GeneratorProjectDir>
+  </PropertyGroup>
+
+  <!-- Reference source generator project to ensure it builds first -->
+  <ItemGroup>
+    <ProjectReference Include="$(GeneratorProjectDir)\Org.Console.Generators.csproj" 
+                      PrivateAssets="all" 
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- Include generator DLL in package -->
+  <ItemGroup>
+    <None Include="$(GeneratorProjectDir)\bin\$(Configuration)\netstandard2.0\Org.Console.Generators.dll" 
+          Pack="true" 
+          PackagePath="analyzers/dotnet/cs/" />
+  </ItemGroup>
+
+</Project>

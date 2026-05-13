@@ -1,0 +1,23 @@
+# Code Style Rules
+# Applied via EditorConfigFiles item group
+
+is_global = true
+global_level = -1
+
+#### Using Directives ####
+
+# Using directives must be outside namespace
+csharp_using_directive_placement = outside_namespace
+
+#### Naming Conventions ####
+
+# Private fields: _camelCase
+dotnet_naming_rule.private_fields_underscore.symbols = private_field_symbols
+dotnet_naming_rule.private_fields_underscore.style = private_field_style
+dotnet_naming_rule.private_fields_underscore.severity = warning
+
+dotnet_naming_symbols.private_field_symbols.applicable_kinds = field
+dotnet_naming_symbols.private_field_symbols.applicable_accessibilities = private
+
+dotnet_naming_style.private_field_style.required_prefix = _
+dotnet_naming_style.private_field_style.capitalization = camel_case

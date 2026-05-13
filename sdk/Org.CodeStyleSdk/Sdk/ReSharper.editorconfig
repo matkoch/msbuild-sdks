@@ -1,0 +1,7 @@
+# ReSharper/Rider settings
+
+is_global = true
+global_level = -1
+
+# Indent raw string literals
+resharper_indent_raw_literal_string = indent

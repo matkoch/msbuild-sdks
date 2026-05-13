@@ -1,0 +1,53 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+
+    Adds OpenTelemetry packages and source generator for auto-registration.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk targets if we imported its props -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(_ObservabilitySdk_MustImportNETSdk)' == 'true'" />
+
+  <!-- Re-evaluate console exporter setting after project content (allows user override) -->
+  <PropertyGroup>
+    <OrgObservabilityConsoleExporter Condition="'$(OrgObservabilityConsoleExporter)' == '' AND '$(Configuration)' == 'Debug'">true</OrgObservabilityConsoleExporter>
+    <OrgObservabilityConsoleExporter Condition="'$(OrgObservabilityConsoleExporter)' == ''">false</OrgObservabilityConsoleExporter>
+  </PropertyGroup>
+
+  <!-- Define preprocessor symbol for console exporter (evaluated after project content) -->
+  <PropertyGroup Condition="'$(OrgObservabilityConsoleExporter)' == 'true'">
+    <DefineConstants>$(DefineConstants);ORG_OBSERVABILITY_CONSOLE_EXPORTER</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Determine SDK version from the resolved SDK path -->
+  <PropertyGroup>
+    <_OrgObservabilitySdkVersion>$([System.IO.Path]::GetFileName($([System.IO.Path]::GetDirectoryName($([System.IO.Path]::GetDirectoryName('$(MSBuildThisFileDirectory)'))))))</_OrgObservabilitySdkVersion>
+  </PropertyGroup>
+
+  <!-- Runtime library and OpenTelemetry packages -->
+  <ItemGroup Condition="'$(OrgObservabilityEnabled)' == 'true'">
+    <!-- Runtime library with extension methods called by the generator (uses same version as SDK) -->
+    <PackageReference Include="Org.Observability" Version="$(_OrgObservabilitySdkVersion)" />
+    
+    <!-- Hosting (provides Host.CreateApplicationBuilder) -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
+    
+    <!-- OTLP exporter -->
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" 
+                      Condition="'$(OrgObservabilityOtlpExporter)' == 'true'" />
+    
+    <!-- Console exporter (for local development) - only needed when enabled -->
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.15.3" 
+                      Condition="'$(OrgObservabilityConsoleExporter)' == 'true'" />
+    
+    <!-- ASP.NET Core instrumentation (for web projects only) -->
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2"
+                      Condition="'$(UsingMicrosoftNETSdkWeb)' == 'true'" />
+  </ItemGroup>
+
+  <!-- Source generator for auto-registration -->
+  <ItemGroup Condition="'$(OrgObservabilityEnabled)' == 'true' AND '$(OrgObservabilityAutoRegister)' == 'true'">
+    <Analyzer Include="$(MSBuildThisFileDirectory)../analyzers/dotnet/cs/Org.Observability.Generators.dll" />
+  </ItemGroup>
+
+</Project>

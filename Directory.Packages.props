@@ -1,0 +1,53 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- CLI execution -->
+    <PackageVersion Include="CliWrap" Version="3.7.0" />
+
+    <!-- Testing - xUnit v3 -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageVersion Include="xunit.v3" Version="3.2.2" />
+    <PackageVersion Include="xunit.v3.extensibility.core" Version="3.2.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+
+    <!-- Parallel test execution -->
+    <PackageVersion Include="Meziantou.Xunit.v3.ParallelTestFramework" Version="1.0.6" />
+
+    <!-- MSBuild binlog parsing -->
+    <PackageVersion Include="MSBuild.StructuredLogger" Version="2.2.472" />
+
+    <!-- .NET SDK downloads for multi-version testing -->
+    <PackageVersion Include="Microsoft.Deployment.DotNet.Releases" Version="1.0.2" />
+
+    <!-- Source generators -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.12.0" />
+
+    <!-- AOP / IL weaving -->
+    <PackageVersion Include="MrAdvice" Version="2.20.5" />
+
+    <!-- Logging -->
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="9.0.0" />
+
+    <!-- Rich console output -->
+    <PackageVersion Include="Spectre.Console" Version="0.50.0" />
+
+    <!-- SBOM generation -->
+    <PackageVersion Include="Microsoft.Sbom.Targets" Version="4.1.5" />
+
+    <!-- NuGet package inspection -->
+    <PackageVersion Include="NuGet.Packaging" Version="7.3.1" />
+
+    <!-- OpenTelemetry (for ObservabilitySdk) -->
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.5" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" />
+    <PackageVersion Include="OpenTelemetry.Exporter.Console" Version="1.15.3" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2" />
+  </ItemGroup>
+</Project>

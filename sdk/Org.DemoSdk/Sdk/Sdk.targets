@@ -1,0 +1,20 @@
+<Project>
+  <!--
+    Sdk.targets - Imported AFTER the project content
+    
+    This runs last, so values set here are ENFORCEMENTS that override the project.
+  -->
+
+  <!-- Import Microsoft.NET.Sdk targets -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+
+  <PropertyGroup>
+    <EvaluationOrder>$(EvaluationOrder)Sdk.targets
+</EvaluationOrder>
+  </PropertyGroup>
+
+  <Target Name="ShowEvaluationOrder" AfterTargets="Build">
+    <Message Importance="High" Text="=== SDK Evaluation Order ===" />
+    <Message Importance="High" Text="$(EvaluationOrder)" />
+  </Target>
+</Project>

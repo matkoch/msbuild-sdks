@@ -1,0 +1,23 @@
+<Project>
+  <!--
+    Sdk.props - Imported before the project content
+
+    Extends Org.CodeStyleSdk with analyzer diagnostic severity configuration.
+  -->
+
+  <!-- Import Org.CodeStyleSdk as foundation -->
+  <Import Project="Sdk.props" Sdk="Org.CodeStyleSdk" />
+
+  <!-- Include analyzer severity configuration -->
+  <ItemGroup>
+    <GlobalAnalyzerConfigFiles Include="$(MSBuildThisFileDirectory)*.globalconfig" />
+  </ItemGroup>
+
+  <!-- Third-party analyzers -->
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer" Version="2.0.203">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+</Project>

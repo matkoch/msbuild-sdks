@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.DemoSdk
+    Educational SDK that demonstrates MSBuild evaluation order.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.DemoSdk</PackageId>
+    <Description>Educational MSBuild SDK that demonstrates evaluation order (Sdk.props → Project → Sdk.targets)</Description>
+  </PropertyGroup>
+
+</Project>

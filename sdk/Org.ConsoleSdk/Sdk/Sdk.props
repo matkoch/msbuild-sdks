@@ -1,0 +1,26 @@
+<Project>
+  <!--
+    Sdk.props - Imported before the project content
+
+    Sets up console app defaults and aliases Console to Spectre.Console.AnsiConsole.
+    This SDK does NOT extend Org.BuildSdk - it can be combined with any other SDK.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk if not already imported -->
+  <PropertyGroup>
+    <_ConsoleSdk_MustImportNETSdk Condition="'$(UsingMicrosoftNETSdk)' != 'true'">true</_ConsoleSdk_MustImportNETSdk>
+  </PropertyGroup>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" Condition="'$(_ConsoleSdk_MustImportNETSdk)' == 'true'" />
+
+  <!-- Console app defaults -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <!-- Alias Console to Spectre.Console.AnsiConsole for rich output -->
+  <ItemGroup>
+    <Using Include="Spectre.Console.AnsiConsole" Alias="Console" />
+  </ItemGroup>
+
+</Project>

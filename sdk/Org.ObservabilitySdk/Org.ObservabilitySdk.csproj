@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.ObservabilitySdk
+    MSBuild SDK for OpenTelemetry observability with auto-registration.
+    
+    The runtime library (Org.Observability) is added as a PackageReference in Sdk.targets.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.ObservabilitySdk</PackageId>
+    <Description>MSBuild SDK that provides OpenTelemetry observability with automatic service registration</Description>
+
+    <!-- Source project path -->
+    <GeneratorProjectDir>$([MSBuild]::NormalizePath('$(MSBuildProjectDirectory)', '..', '..', 'src', 'Org.Observability.Generators'))</GeneratorProjectDir>
+  </PropertyGroup>
+
+  <!-- Reference source generator project to ensure it builds first -->
+  <ItemGroup>
+    <ProjectReference Include="$(GeneratorProjectDir)\Org.Observability.Generators.csproj" 
+                      PrivateAssets="all" 
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- Include generator DLL in package -->
+  <ItemGroup>
+    <None Include="$(GeneratorProjectDir)\bin\$(Configuration)\netstandard2.0\Org.Observability.Generators.dll" 
+          Pack="true" 
+          PackagePath="analyzers/dotnet/cs/" />
+  </ItemGroup>
+
+</Project>

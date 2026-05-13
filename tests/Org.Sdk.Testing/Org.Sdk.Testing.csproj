@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Org.Sdk.Testing
+    ================
+    Shared test infrastructure for SDK integration tests.
+    
+    Provides:
+    - ProjectBuilder: Programmatic project creation and build execution
+    - BuildResult: Build output with binlog and sarif parsing for assertions
+    
+    This is a library, not a test project. Test projects reference this.
+  -->
+  
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>Org.Sdk.Testing</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CliWrap" />
+    <PackageReference Include="Microsoft.Deployment.DotNet.Releases" />
+    <PackageReference Include="MSBuild.StructuredLogger" />
+    <PackageReference Include="NuGet.Packaging" />
+    <PackageReference Include="xunit.v3.extensibility.core" />
+  </ItemGroup>
+</Project>

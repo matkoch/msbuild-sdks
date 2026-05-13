@@ -1,0 +1,35 @@
+<Project>
+  <!--
+    Sdk.props - Imported before the project content
+
+    Sets up OpenTelemetry observability defaults.
+    This SDK does NOT extend Org.BuildSdk - it can be combined with any other SDK.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk if not already imported -->
+  <PropertyGroup>
+    <_ObservabilitySdk_MustImportNETSdk Condition="'$(UsingMicrosoftNETSdk)' != 'true'">true</_ObservabilitySdk_MustImportNETSdk>
+  </PropertyGroup>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" Condition="'$(_ObservabilitySdk_MustImportNETSdk)' == 'true'" />
+
+  <!-- Observability configuration properties -->
+  <PropertyGroup>
+    <!-- Master switch for observability -->
+    <OrgObservabilityEnabled Condition="'$(OrgObservabilityEnabled)' == ''">true</OrgObservabilityEnabled>
+    
+    <!-- Auto-registration via source generator interceptor -->
+    <OrgObservabilityAutoRegister Condition="'$(OrgObservabilityAutoRegister)' == ''">true</OrgObservabilityAutoRegister>
+    
+    <!-- OTLP exporter: enabled by default (activates when OTEL_EXPORTER_OTLP_ENDPOINT is set) -->
+    <OrgObservabilityOtlpExporter Condition="'$(OrgObservabilityOtlpExporter)' == ''">true</OrgObservabilityOtlpExporter>
+    
+    <!-- Console exporter default is set in Sdk.targets to allow user override in project file -->
+  </PropertyGroup>
+
+  <!-- Enable interceptors for auto-registration -->
+  <PropertyGroup Condition="'$(OrgObservabilityAutoRegister)' == 'true'">
+    <InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Org.Observability.Generated</InterceptorsPreviewNamespaces>
+  </PropertyGroup>
+
+</Project>

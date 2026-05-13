@@ -1,0 +1,26 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+
+    Defines targets and final property values.
+    Values set here are ENFORCEMENTS that override project settings.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk targets if we imported its props -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(_MustImportMicrosoftNETSdk)' == 'true'" />
+
+  <!-- Release: strict enforcement for CI/production builds -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+  <!-- Debug: relaxed settings for development inner loop -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisMode>Recommended</AnalysisMode>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
+</Project>

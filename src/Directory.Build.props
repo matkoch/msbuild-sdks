@@ -1,0 +1,9 @@
+<Project>
+  <!-- Inherit from root -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..'))" />
+
+  <!-- Source generators must target netstandard2.0 and have stricter requirements -->
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+</Project>

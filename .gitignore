@@ -1,0 +1,25 @@
+# MARP
+*.html
+
+# Build outputs
+bin/
+obj/
+artifacts/
+
+# IDE
+.idea/
+.vs/
+*.user
+*.suo
+
+# NuGet
+*.nupkg
+packages/
+
+# Test results
+TestResults/
+*.trx
+
+# OS
+.DS_Store
+Thumbs.db

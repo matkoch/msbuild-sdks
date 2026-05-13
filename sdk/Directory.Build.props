@@ -1,0 +1,23 @@
+<Project>
+  <!-- Inherit from repo root -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- SDK packaging projects have no C# source files -->
+  <PropertyGroup>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <!-- Common SDK packaging properties -->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageType>MSBuildSdk</PackageType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <Authors>Organization</Authors>
+  </PropertyGroup>
+
+  <!-- All SDKs include their Sdk/ folder content -->
+  <ItemGroup>
+    <None Include="Sdk\**\*" Pack="true" PackagePath="Sdk/" />
+  </ItemGroup>
+</Project>

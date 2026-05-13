@@ -1,0 +1,11 @@
+# IDE Analyzer Diagnostic Severities
+# Built-in .NET IDE analyzers (code style enforcement)
+
+is_global = true
+global_level = -2
+
+# IDE0065: Using directives must be outside namespace
+dotnet_diagnostic.IDE0065.severity = warning
+
+# IDE1006: Naming rule violations
+dotnet_diagnostic.IDE1006.severity = warning

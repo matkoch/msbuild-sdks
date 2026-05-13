@@ -1,0 +1,45 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+
+    Auto-detects README.md and LICENSE files for package inclusion.
+    Searches the project directory and parent directories.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk targets if we imported its props -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(_PackageSdk_MustImportNETSdk)' == 'true'" />
+
+  <!-- Auto-detect README from project directory or parent directories -->
+  <PropertyGroup Condition="'$(PackageReadmeFile)' == '' AND '$(ReadmeFileName)' != ''">
+    <_ReadmePath>$([MSBuild]::GetPathOfFileAbove('$(ReadmeFileName)', '$(MSBuildProjectDirectory)'))</_ReadmePath>
+    <PackageReadmeFile Condition="'$(_ReadmePath)' != ''">$(ReadmeFileName)</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(_ReadmePath)' != ''">
+    <!-- Remove any existing None item to avoid duplicates -->
+    <None Remove="$(ReadmeFileName)" />
+    <None Remove="$(_ReadmePath)" />
+    <None Include="$(_ReadmePath)" Pack="true" PackagePath="$(ReadmeFileName)" Visible="false" />
+  </ItemGroup>
+
+  <!-- Auto-detect LICENSE from project directory or parent directories -->
+  <PropertyGroup Condition="'$(PackageLicenseFile)' == '' AND '$(PackageLicenseExpression)' == '' AND '$(LicenseFileName)' != ''">
+    <_LicensePath>$([MSBuild]::GetPathOfFileAbove('$(LicenseFileName)', '$(MSBuildProjectDirectory)'))</_LicensePath>
+    <PackageLicenseFile Condition="'$(_LicensePath)' != ''">$(LicenseFileName)</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(_LicensePath)' != ''">
+    <!-- Remove any existing None item to avoid duplicates -->
+    <None Remove="$(LicenseFileName)" />
+    <None Remove="$(_LicensePath)" />
+    <!-- PackagePath="" places file at package root with original filename -->
+    <None Include="$(_LicensePath)" Pack="true" PackagePath="" Visible="false" />
+  </ItemGroup>
+
+  <!-- Auto-include sibling .props and .targets files, renamed to match PackageId -->
+  <ItemGroup>
+    <None Include="$(MSBuildProjectName).props" PackagePath="build/$(PackageId).props" Pack="true" Condition="Exists('$(MSBuildProjectDirectory)/$(MSBuildProjectName).props')" />
+    <None Include="$(MSBuildProjectName).targets" PackagePath="build/$(PackageId).targets" Pack="true" Condition="Exists('$(MSBuildProjectDirectory)/$(MSBuildProjectName).targets')" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.PackageSdk
+    MSBuild SDK for NuGet package publishing defaults.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.PackageSdk</PackageId>
+    <Description>MSBuild SDK with NuGet packaging defaults for organizational packages</Description>
+  </PropertyGroup>
+
+</Project>

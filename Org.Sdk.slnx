@@ -1,0 +1,25 @@
+<Solution>
+  <!-- SDKs -->
+  <Folder Name="/sdk/">
+    <Project Path="sdk/Org.AnalyzersSdk/Org.AnalyzersSdk.csproj" />
+    <Project Path="sdk/Org.BuildSdk/Org.BuildSdk.csproj" />
+    <Project Path="sdk/Org.CodeStyleSdk/Org.CodeStyleSdk.csproj" />
+    <Project Path="sdk/Org.ConsoleSdk/Org.ConsoleSdk.csproj" />
+    <Project Path="sdk/Org.DemoSdk/Org.DemoSdk.csproj" />
+    <Project Path="sdk/Org.ObservabilitySdk/Org.ObservabilitySdk.csproj" />
+    <Project Path="sdk/Org.PackageSdk/Org.PackageSdk.csproj" />
+  </Folder>
+
+  <!-- Source -->
+  <Folder Name="/src/">
+    <Project Path="src/Org.Console.Generators/Org.Console.Generators.csproj" />
+    <Project Path="src/Org.Observability/Org.Observability.csproj" />
+    <Project Path="src/Org.Observability.Generators/Org.Observability.Generators.csproj" />
+  </Folder>
+
+  <!-- Tests -->
+  <Folder Name="/tests/">
+    <Project Path="tests/Org.Sdk.Testing/Org.Sdk.Testing.csproj" />
+    <Project Path="tests/Org.Sdk.Tests/Org.Sdk.Tests.csproj" />
+  </Folder>
+</Solution>

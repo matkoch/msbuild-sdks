@@ -1,0 +1,17 @@
+<Project>
+  <!--
+    Sdk.props - Imported before the project content
+
+    Extends Org.BuildSdk with code style enforcement.
+    All compiler defaults, language settings, nullable context, warning strategy,
+    and determinism are inherited from Org.BuildSdk - not redefined here.
+  -->
+
+  <!-- Import Org.BuildSdk as foundation -->
+  <Import Project="Sdk.props" Sdk="Org.BuildSdk" />
+
+  <!-- Code style rules via EditorConfig (naming conventions, formatting, IDE settings) -->
+  <ItemGroup>
+    <EditorConfigFiles Include="$(MSBuildThisFileDirectory)*.editorconfig" />
+  </ItemGroup>
+</Project>

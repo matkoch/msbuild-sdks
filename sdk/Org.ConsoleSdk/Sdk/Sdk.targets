@@ -1,0 +1,27 @@
+<Project>
+  <!--
+    Sdk.targets - Imported after the project content
+
+    Adds MrAdvice for entry point interception, Spectre.Console for rich output,
+    and source generator for timing aspect + CancellationToken.
+  -->
+
+  <!-- Only import Microsoft.NET.Sdk targets if we imported its props -->
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" Condition="'$(_ConsoleSdk_MustImportNETSdk)' == 'true'" />
+
+  <!-- MrAdvice for entry point interception (IL weaving) -->
+  <ItemGroup>
+    <PackageReference Include="MrAdvice" Version="2.20.5" />
+  </ItemGroup>
+
+  <!-- Rich console output with Spectre.Console -->
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.50.0" />
+  </ItemGroup>
+
+  <!-- Source generator for timing aspect and CancellationToken -->
+  <ItemGroup>
+    <Analyzer Include="$(MSBuildThisFileDirectory)../analyzers/dotnet/cs/Org.Console.Generators.dll" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+<Project>
+  <!--
+    Sdk.props - Imported BEFORE the project content
+    
+    This runs first, so values set here are DEFAULTS that the project can override.
+  -->
+  
+  <!-- Import Microsoft.NET.Sdk as foundation -->
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+
+  <PropertyGroup>
+    <EvaluationOrder>$(EvaluationOrder)Sdk.props
+</EvaluationOrder>
+  </PropertyGroup>
+</Project>

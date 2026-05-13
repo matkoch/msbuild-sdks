@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Org.Sdk.Tests
+    =============
+    Integration tests for all Org SDKs.
+    
+    Uses ProjectBuilder to create test projects programmatically
+    and verify SDK behavior via explicit assertions.
+    
+    Test output is generated in bin/_output/ and linked into output/
+    for easy IDE navigation.
+  -->
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="xunit.runner.visualstudio">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Meziantou.Xunit.v3.ParallelTestFramework" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Org.Sdk.Testing\Org.Sdk.Testing.csproj" />
+  </ItemGroup>
+
+  <!-- Show test output in IDE under output/ folder -->
+  <ItemGroup Label="Test Output">
+    <None Include="bin\_output\**\*" Link="output\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

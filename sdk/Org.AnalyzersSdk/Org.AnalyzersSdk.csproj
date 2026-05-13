@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.AnalyzersSdk
+    MSBuild SDK that configures analyzer diagnostic severities.
+    Extends Org.CodeStyleSdk.
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.AnalyzersSdk</PackageId>
+    <Description>MSBuild SDK that configures analyzer diagnostic severities</Description>
+  </PropertyGroup>
+
+</Project>

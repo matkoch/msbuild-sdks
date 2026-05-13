@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <!--
+    Org.BuildSdk
+    MSBuild SDK packaging project (no compilation).
+  -->
+
+  <PropertyGroup>
+    <PackageId>Org.BuildSdk</PackageId>
+    <Description>MSBuild SDK that enforces organizational build policies</Description>
+  </PropertyGroup>
+
+</Project>
